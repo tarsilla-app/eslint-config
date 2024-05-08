@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "target": "ESNext",
+    "moduleResolution": "Node",
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "outDir": "./lib",
+    "baseUrl": ".",
+    "allowJs": true,
+  },
+  "include": ["**/*"],
+  "exclude": ["lib"]
+}
