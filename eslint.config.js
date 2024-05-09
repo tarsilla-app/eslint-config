@@ -1,7 +1,7 @@
 import eslint from '@eslint/js';
-import eslintImport from 'eslint-plugin-import';
+import imports from 'eslint-plugin-import';
 import prettierRecommended from 'eslint-plugin-prettier/recommended';
-import eslintUnusedImport from 'eslint-plugin-unused-imports';
+import unusedImport from 'eslint-plugin-unused-imports';
 import tseslint from 'typescript-eslint';
 
 const config = tseslint.config(
@@ -22,8 +22,8 @@ const config = tseslint.config(
       },
     },
     plugins: {
-      import: eslintImport,
-      'unused-imports': eslintUnusedImport,
+      import: imports,
+      'unused-imports': unusedImport,
     },
     rules: {
       'prettier/prettier': [
@@ -42,8 +42,8 @@ const config = tseslint.config(
           },
         },
       ],
-      ...eslintImport.configs.recommended.rules,
-      ...eslintImport.configs.typescript.rules,
+      ...imports.configs.recommended.rules,
+      ...imports.configs.typescript.rules,
       '@typescript-eslint/explicit-module-boundary-types': 'error',
       '@typescript-eslint/no-explicit-any': 'error',
       'unused-imports/no-unused-imports-ts': 'error',

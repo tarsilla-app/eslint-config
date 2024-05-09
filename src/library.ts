@@ -1,16 +1,14 @@
 import eslint from '@eslint/js';
 import type { TSESLint } from '@typescript-eslint/utils';
-import eslintImport from 'eslint-plugin-import';
-import eslintJest from 'eslint-plugin-jest';
+import imports from 'eslint-plugin-import';
+import jest from 'eslint-plugin-jest';
 import prettierRecommended from 'eslint-plugin-prettier/recommended';
-import eslintUnusedImport from 'eslint-plugin-unused-imports';
+import unusedImports from 'eslint-plugin-unused-imports';
 import tseslint from 'typescript-eslint';
 
-type Config = {
-  ignores: string[];
-};
+import { Config } from './Config';
 
-function config({ ignores }: Config): TSESLint.FlatConfig.ConfigArray {
+function library({ ignores }: Config): TSESLint.FlatConfig.ConfigArray {
   return tseslint.config(
     eslint.configs.recommended,
     ...tseslint.configs.recommended,
@@ -18,7 +16,7 @@ function config({ ignores }: Config): TSESLint.FlatConfig.ConfigArray {
     prettierRecommended,
     {
       files: ['test/**'],
-      ...eslintJest.configs['flat/recommended'],
+      ...jest.configs['flat/recommended'],
     },
     {
       ignores,
@@ -33,8 +31,8 @@ function config({ ignores }: Config): TSESLint.FlatConfig.ConfigArray {
         },
       },
       plugins: {
-        import: eslintImport,
-        'unused-imports': eslintUnusedImport,
+        import: imports,
+        'unused-imports': unusedImports,
       },
       rules: {
         'prettier/prettier': [
@@ -53,8 +51,8 @@ function config({ ignores }: Config): TSESLint.FlatConfig.ConfigArray {
             },
           },
         ],
-        ...eslintImport.configs.recommended.rules,
-        ...eslintImport.configs.typescript.rules,
+        ...imports.configs.recommended.rules,
+        ...imports.configs.typescript.rules,
         '@typescript-eslint/explicit-module-boundary-types': 'error',
         '@typescript-eslint/no-explicit-any': 'error',
         'unused-imports/no-unused-imports-ts': 'error',
@@ -79,14 +77,6 @@ function config({ ignores }: Config): TSESLint.FlatConfig.ConfigArray {
           'error',
           {
             groups: ['builtin', 'external', 'internal', ['parent', 'sibling']],
-            pathGroups: [
-              {
-                pattern: 'react',
-                group: 'external',
-                position: 'before',
-              },
-            ],
-            pathGroupsExcludedImportTypes: ['react'],
             'newlines-between': 'always',
             alphabetize: {
               order: 'asc',
@@ -105,4 +95,4 @@ function config({ ignores }: Config): TSESLint.FlatConfig.ConfigArray {
   );
 }
 
-export default config;
+export { library };

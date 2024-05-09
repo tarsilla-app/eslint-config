@@ -1,18 +1,16 @@
 import eslint from '@eslint/js';
 import type { TSESLint } from '@typescript-eslint/utils';
-import eslintImport from 'eslint-plugin-import';
-import eslintJest from 'eslint-plugin-jest';
+import imports from 'eslint-plugin-import';
+import jest from 'eslint-plugin-jest';
 import prettierRecommended from 'eslint-plugin-prettier/recommended';
-import reactRecommended from 'eslint-plugin-react/configs/recommended';
-import eslintReactHooks from 'eslint-plugin-react-hooks';
-import eslintUnusedImport from 'eslint-plugin-unused-imports';
+import reactRecommended from 'eslint-plugin-react/configs/recommended.js';
+import reactHooks from 'eslint-plugin-react-hooks';
+import unusedImports from 'eslint-plugin-unused-imports';
 import tseslint from 'typescript-eslint';
 
-type Config = {
-  ignores: string[];
-};
+import { Config } from './Config';
 
-function config({ ignores }: Config): TSESLint.FlatConfig.ConfigArray {
+function react({ ignores }: Config): TSESLint.FlatConfig.ConfigArray {
   return tseslint.config(
     eslint.configs.recommended,
     ...tseslint.configs.recommended,
@@ -21,7 +19,7 @@ function config({ ignores }: Config): TSESLint.FlatConfig.ConfigArray {
     prettierRecommended,
     {
       files: ['test/**'],
-      ...eslintJest.configs['flat/recommended'],
+      ...jest.configs['flat/recommended'],
     },
     {
       ignores,
@@ -39,9 +37,9 @@ function config({ ignores }: Config): TSESLint.FlatConfig.ConfigArray {
         },
       },
       plugins: {
-        import: eslintImport,
-        'unused-imports': eslintUnusedImport,
-        'react-hooks': eslintReactHooks,
+        import: imports,
+        'unused-imports': unusedImports,
+        'react-hooks': reactHooks,
       },
       rules: {
         'prettier/prettier': [
@@ -61,9 +59,11 @@ function config({ ignores }: Config): TSESLint.FlatConfig.ConfigArray {
             },
           },
         ],
-        ...eslintReactHooks.configs.recommended.rules,
-        ...eslintImport.configs.recommended.rules,
-        ...eslintImport.configs.typescript.rules,
+        ...reactHooks.configs.recommended.rules,
+        ...imports.configs.recommended.rules,
+        ...imports.configs.typescript.rules,
+        'react/react-in-jsx-scope': 'off',
+        'react/jsx-uses-react': 'off',
         '@typescript-eslint/explicit-module-boundary-types': 'error',
         '@typescript-eslint/no-explicit-any': 'error',
         'unused-imports/no-unused-imports-ts': 'error',
@@ -109,9 +109,12 @@ function config({ ignores }: Config): TSESLint.FlatConfig.ConfigArray {
           typescript: true,
           node: true,
         },
+        react: {
+          version: 'detect',
+        },
       },
     },
   );
 }
 
-export default config;
+export { react };

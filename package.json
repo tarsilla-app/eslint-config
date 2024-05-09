@@ -1,26 +1,25 @@
 {
   "name": "@tarsilla/eslint-config",
-  "version": "0.0.3",
+  "version": "0.0.19",
   "engines": {
-    "node": "^14.18.0 || >=16.0.0"
+    "node": ">=20.12.2"
   },
   "exports": {
-    "./library": {
-      "types": "./lib/library.ts",
-      "require": "./lib/library.cjs",
-      "default": "./lib/library.esm"
-    },
-    "./react": {
-      "types": "./lib/react.d.ts",
-      "require": "./lib/react.cjs",
-      "default": "./lib/react.esm"
-    },
-    "./package.json": "./package.json"
+    ".": {
+      "require": "./lib/index.cjs",
+      "default": "./lib/index.mjs"
+    }
   },
+  "types": "./lib/index.d.ts",
   "files": [
-    "lib"
+    "lib/index.d.ts",
+    "lib/index.cjs",
+    "lib/index.mjs",
+    "README.md",
+    "LICENSE"
   ],
   "type": "module",
+  "license": "MIT",
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
