@@ -3,6 +3,8 @@ import type { TSESLint } from '@typescript-eslint/utils';
 import eslintImport from 'eslint-plugin-import';
 import eslintJest from 'eslint-plugin-jest';
 import prettierRecommended from 'eslint-plugin-prettier/recommended';
+import reactRecommended from 'eslint-plugin-react/configs/recommended';
+import eslintReactHooks from 'eslint-plugin-react-hooks';
 import eslintUnusedImport from 'eslint-plugin-unused-imports';
 import tseslint from 'typescript-eslint';
 
@@ -15,6 +17,7 @@ function config({ ignores }: Config): TSESLint.FlatConfig.ConfigArray {
     eslint.configs.recommended,
     ...tseslint.configs.recommended,
     ...tseslint.configs.recommendedTypeChecked,
+    reactRecommended,
     prettierRecommended,
     {
       files: ['test/**'],
@@ -31,12 +34,34 @@ function config({ ignores }: Config): TSESLint.FlatConfig.ConfigArray {
           project: true,
           tsconfigRootDir: './',
         },
+        globals: {
+          browser: true,
+        },
       },
       plugins: {
         import: eslintImport,
         'unused-imports': eslintUnusedImport,
+        'react-hooks': eslintReactHooks,
       },
       rules: {
+        'prettier/prettier': [
+          'error',
+          {
+            semi: true,
+            trailingComma: 'all',
+            singleQuote: true,
+            jsxSingleQuote: true,
+            printWidth: 150,
+            tabWidth: 2,
+          },
+          {
+            usePrettierrc: false,
+            fileInfoOptions: {
+              withNodeModules: true,
+            },
+          },
+        ],
+        ...eslintReactHooks.configs.recommended.rules,
         ...eslintImport.configs.recommended.rules,
         ...eslintImport.configs.typescript.rules,
         '@typescript-eslint/explicit-module-boundary-types': 'error',

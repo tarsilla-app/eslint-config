@@ -26,6 +26,22 @@ const config = tseslint.config(
       'unused-imports': eslintUnusedImport,
     },
     rules: {
+      'prettier/prettier': [
+        'error',
+        {
+          semi: true,
+          trailingComma: 'all',
+          singleQuote: true,
+          printWidth: 150,
+          tabWidth: 2,
+        },
+        {
+          usePrettierrc: false,
+          fileInfoOptions: {
+            withNodeModules: true,
+          },
+        },
+      ],
       ...eslintImport.configs.recommended.rules,
       ...eslintImport.configs.typescript.rules,
       '@typescript-eslint/explicit-module-boundary-types': 'error',

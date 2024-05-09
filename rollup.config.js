@@ -15,16 +15,16 @@ import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 
 const config = [
   {
-    input: 'src/index.ts',
+    input: 'src/library.ts',
     output: [
       {
-        file: 'lib/index.cjs',
+        file: 'lib/library.cjs',
         format: 'cjs',
         sourcemap: true,
         exports: 'auto',
       },
       {
-        file: 'lib/index.esm',
+        file: 'lib/library.esm',
         format: 'esm',
         sourcemap: true,
         exports: 'auto',
@@ -33,8 +33,31 @@ const config = [
     plugins: [peerDepsExternal(), resolve(), commonjs(), typescript({ tsconfig: './tsconfig.json' }), json(), terser()],
   },
   {
-    input: './src/index.ts',
-    output: [{ file: './lib/index.d.ts', format: 'esm' }],
+    input: './src/library.ts',
+    output: [{ file: './lib/library.d.ts', format: 'esm' }],
+    plugins: [dts()],
+  },
+  {
+    input: 'src/react.ts',
+    output: [
+      {
+        file: 'lib/react.cjs',
+        format: 'cjs',
+        sourcemap: true,
+        exports: 'auto',
+      },
+      {
+        file: 'lib/react.esm',
+        format: 'esm',
+        sourcemap: true,
+        exports: 'auto',
+      },
+    ],
+    plugins: [peerDepsExternal(), resolve(), commonjs(), typescript({ tsconfig: './tsconfig.json' }), json(), terser()],
+  },
+  {
+    input: './src/react.ts',
+    output: [{ file: './lib/react.d.ts', format: 'esm' }],
     plugins: [dts()],
   },
 ];
