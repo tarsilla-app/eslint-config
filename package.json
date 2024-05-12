@@ -1,11 +1,13 @@
 {
   "name": "@tarsilla/eslint-config",
-  "version": "0.0.30",
+  "version": "0.0.31",
   "engines": {
     "node": "^20.12.2"
   },
+  "main": "./lib/index.mjs",
   "exports": {
     ".": {
+      "types": "./lib/index.d.ts",
       "require": "./lib/index.cjs",
       "default": "./lib/index.mjs"
     },
