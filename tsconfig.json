@@ -9,7 +9,7 @@
     "esModuleInterop": true,
     "outDir": "./lib",
     "baseUrl": ".",
-    "allowJs": true,
+    "allowJs": true
   },
   "include": ["**/*"],
   "exclude": ["lib"]
