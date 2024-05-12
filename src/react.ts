@@ -49,7 +49,7 @@ function react({ ignores }: Config): TSESLint.FlatConfig.ConfigArray {
             trailingComma: 'all',
             singleQuote: true,
             jsxSingleQuote: true,
-            printWidth: 150,
+            printWidth: 80,
             tabWidth: 2,
           },
           {

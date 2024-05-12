@@ -41,7 +41,7 @@ function library({ ignores }: Config): TSESLint.FlatConfig.ConfigArray {
             semi: true,
             trailingComma: 'all',
             singleQuote: true,
-            printWidth: 150,
+            printWidth: 80,
             tabWidth: 2,
           },
           {
