@@ -1,13 +1,15 @@
-import eslint from '@eslint/js';
+import js from '@eslint/js';
 import imports from 'eslint-plugin-import';
 import prettierRecommended from 'eslint-plugin-prettier/recommended';
 import unusedImport from 'eslint-plugin-unused-imports';
-import tseslint from 'typescript-eslint';
+import { config, configs } from 'typescript-eslint';
 
-const config = tseslint.config(
-  eslint.configs.recommended,
-  ...tseslint.configs.recommended,
-  ...tseslint.configs.recommendedTypeChecked,
+const eslintConfig = config(
+  js.configs.recommended,
+  imports.flatConfigs.recommended,
+  imports.flatConfigs.typescript,
+  ...configs.recommended,
+  ...configs.recommendedTypeChecked,
   prettierRecommended,
   {
     ignores: ['**/.vscode/', '**/node_modules/', '**/lib/'],
@@ -15,14 +17,13 @@ const config = tseslint.config(
   {
     languageOptions: {
       parserOptions: {
-        ecmaVersion: 2024,
+        ecmaVersion: 'latest',
         sourceType: 'module',
         project: true,
         tsconfigRootDir: './',
       },
     },
     plugins: {
-      import: imports,
       'unused-imports': unusedImport,
     },
     rules: {
@@ -32,7 +33,7 @@ const config = tseslint.config(
           semi: true,
           trailingComma: 'all',
           singleQuote: true,
-          printWidth: 80,
+          printWidth: 120,
           tabWidth: 2,
         },
         {
@@ -42,12 +43,11 @@ const config = tseslint.config(
           },
         },
       ],
-      ...imports.configs.recommended.rules,
-      ...imports.configs.typescript.rules,
       '@typescript-eslint/explicit-module-boundary-types': 'error',
       '@typescript-eslint/no-explicit-any': 'error',
-      'unused-imports/no-unused-imports-ts': 'error',
-      'unused-imports/no-unused-vars-ts': [
+      '@typescript-eslint/no-unused-vars': 'off',
+      'unused-imports/no-unused-imports': 'error',
+      'unused-imports/no-unused-vars': [
         'error',
         {
           vars: 'all',
@@ -93,4 +93,4 @@ const config = tseslint.config(
   },
 );
 
-export default config;
+export default eslintConfig;

@@ -4,6 +4,6 @@ declare module 'eslint-plugin-import' {
     recommended: TSESLint.FlatConfig.Config;
     typescript: TSESLint.FlatConfig.Config;
   }
-  const plugin: TSESLint.FlatConfig.Plugin & { configs: Configs };
+  const plugin: { flatConfigs: Configs };
   export default plugin;
 }

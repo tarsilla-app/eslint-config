@@ -1,37 +1,47 @@
-import eslint from '@eslint/js';
+import js from '@eslint/js';
 import type { TSESLint } from '@typescript-eslint/utils';
 import imports from 'eslint-plugin-import';
 import jest from 'eslint-plugin-jest';
 import prettierRecommended from 'eslint-plugin-prettier/recommended';
 import unusedImports from 'eslint-plugin-unused-imports';
-import tseslint from 'typescript-eslint';
+import globalsImp from 'globals';
+import { config, configs } from 'typescript-eslint';
 
 import { Config } from './Config';
 
+const globals = globalsImp as Record<string, Record<string, boolean>>;
+
 function library({ ignores }: Config): TSESLint.FlatConfig.ConfigArray {
-  return tseslint.config(
-    eslint.configs.recommended,
-    ...tseslint.configs.recommended,
-    ...tseslint.configs.recommendedTypeChecked,
-    prettierRecommended,
+  return config(
+    js.configs.recommended,
+    imports.flatConfigs.recommended,
+    imports.flatConfigs.typescript,
+    ...configs.recommended,
+    ...configs.recommendedTypeChecked,
     {
-      files: ['test/**'],
+      files: ['**/*.test.{js,ts,jsx,tsx}'],
       ...jest.configs['flat/recommended'],
+      languageOptions: {
+        globals: {
+          ...globals.jest,
+          //...globals.vitest,
+        },
+      },
     },
+    prettierRecommended,
     {
       ignores,
     },
     {
       languageOptions: {
         parserOptions: {
-          ecmaVersion: 2024,
+          ecmaVersion: 'latest',
           sourceType: 'module',
           project: true,
           tsconfigRootDir: './',
         },
       },
       plugins: {
-        import: imports,
         'unused-imports': unusedImports,
       },
       rules: {
@@ -41,7 +51,7 @@ function library({ ignores }: Config): TSESLint.FlatConfig.ConfigArray {
             semi: true,
             trailingComma: 'all',
             singleQuote: true,
-            printWidth: 80,
+            printWidth: 120,
             tabWidth: 2,
           },
           {
@@ -51,12 +61,12 @@ function library({ ignores }: Config): TSESLint.FlatConfig.ConfigArray {
             },
           },
         ],
-        ...imports.configs.recommended.rules,
-        ...imports.configs.typescript.rules,
         '@typescript-eslint/explicit-module-boundary-types': 'error',
         '@typescript-eslint/no-explicit-any': 'error',
-        'unused-imports/no-unused-imports-ts': 'error',
-        'unused-imports/no-unused-vars-ts': [
+        'no-unused-vars': 'off',
+        '@typescript-eslint/no-unused-vars': 'off',
+        'unused-imports/no-unused-imports': 'error',
+        'unused-imports/no-unused-vars': [
           'error',
           {
             vars: 'all',

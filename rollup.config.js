@@ -25,11 +25,8 @@ const config = [
         exports: 'auto',
       },
     ],
-    plugins: [
-      peerDepsExternal({ includeDependencies: true }),
-      typescript({ tsconfig: './tsconfig.json' }),
-      terser(),
-    ],
+    external: ['globals'],
+    plugins: [peerDepsExternal({ includeDependencies: true }), typescript({ tsconfig: './tsconfig.json' }), terser()],
   },
   {
     input: `./src/index.ts`,
