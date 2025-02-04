@@ -1,8 +1,8 @@
 {
   "name": "@tarsilla/eslint-config",
-  "version": "0.0.34",
+  "version": "0.0.35",
   "engines": {
-    "node": ">22"
+    "node": ">=22"
   },
   "main": "./lib/index.mjs",
   "exports": {
