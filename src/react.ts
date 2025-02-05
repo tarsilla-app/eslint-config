@@ -29,8 +29,19 @@ function react({ ignores }: Config): TSESLint.FlatConfig.ConfigArray {
         ...reactPlugin.configs.flat.recommended.languageOptions,
         globals: {
           ...globals.serviceworker,
-          ...globals.browser,
+          ...Object.keys(globals.browser).reduce<Record<string, boolean>>((acc, key) => {
+            acc[key.trim()] = globals.browser[key];
+            return acc;
+          }, {}),
         },
+      },
+      plugins: {
+        'react-hooks': reactHooks,
+      },
+      rules: {
+        ...reactHooks.configs.recommended.rules,
+        'react/react-in-jsx-scope': 'off',
+        'react/jsx-uses-react': 'off',
       },
     },
     {
@@ -58,7 +69,6 @@ function react({ ignores }: Config): TSESLint.FlatConfig.ConfigArray {
       },
       plugins: {
         'unused-imports': unusedImports,
-        'react-hooks': reactHooks,
       },
       rules: {
         'prettier/prettier': [
@@ -78,9 +88,6 @@ function react({ ignores }: Config): TSESLint.FlatConfig.ConfigArray {
             },
           },
         ],
-        ...reactHooks.configs.recommended.rules,
-        'react/react-in-jsx-scope': 'off',
-        'react/jsx-uses-react': 'off',
         '@typescript-eslint/explicit-module-boundary-types': 'error',
         '@typescript-eslint/no-explicit-any': 'error',
         'no-unused-vars': 'off',
