@@ -17,7 +17,23 @@ function library({ ignores }: Config): TSESLint.FlatConfig.ConfigArray {
     imports.flatConfigs.recommended,
     imports.flatConfigs.typescript,
     ...configs.recommended,
-    ...configs.recommendedTypeChecked,
+    {
+      files: ['**/*.{ts,tsx}'],
+      extends: [...configs.recommendedTypeChecked],
+      languageOptions: {
+        parserOptions: {
+          ecmaVersion: 'latest',
+          sourceType: 'module',
+          project: true,
+          tsconfigRootDir: './',
+        },
+      },
+      rules: {
+        '@typescript-eslint/explicit-module-boundary-types': 'error',
+        '@typescript-eslint/no-explicit-any': 'error',
+        '@typescript-eslint/no-unused-vars': 'off',
+      },
+    },
     {
       files: ['**/*.test.{js,ts,jsx,tsx}'],
       ...jest.configs['flat/recommended'],
@@ -33,14 +49,6 @@ function library({ ignores }: Config): TSESLint.FlatConfig.ConfigArray {
       ignores,
     },
     {
-      languageOptions: {
-        parserOptions: {
-          ecmaVersion: 'latest',
-          sourceType: 'module',
-          project: true,
-          tsconfigRootDir: './',
-        },
-      },
       plugins: {
         'unused-imports': unusedImports,
       },
@@ -61,10 +69,7 @@ function library({ ignores }: Config): TSESLint.FlatConfig.ConfigArray {
             },
           },
         ],
-        '@typescript-eslint/explicit-module-boundary-types': 'error',
-        '@typescript-eslint/no-explicit-any': 'error',
         'no-unused-vars': 'off',
-        '@typescript-eslint/no-unused-vars': 'off',
         'unused-imports/no-unused-imports': 'error',
         'unused-imports/no-unused-vars': [
           'error',

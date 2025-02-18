@@ -1,8 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable import/no-named-as-default-member */
-/* eslint-disable import/no-named-as-default */
-/* eslint-disable import/default */
-/* eslint-disable import/namespace */
 import terser from '@rollup/plugin-terser';
 import typescript from '@rollup/plugin-typescript';
 import { dts } from 'rollup-plugin-dts';

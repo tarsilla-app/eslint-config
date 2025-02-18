@@ -1,6 +1,6 @@
 {
   "name": "@tarsilla/eslint-config",
-  "version": "0.0.36",
+  "version": "0.0.37",
   "engines": {
     "node": ">=22"
   },
@@ -30,27 +30,30 @@
     "prepub": "npm run build",
     "pub": "npm publish --access public"
   },
+  "peerDependencies": {
+    "eslint": ">=9"
+  },
   "dependencies": {
-    "@eslint/js": "^9.19.0",
-    "@types/node": "^22.13.1",
-    "eslint": "^9.19.0",
+    "@eslint/js": "^9.20.0",
+    "@types/node": "^22.13.4",
+    "eslint": "^9.20.1",
     "eslint-config-prettier": "^10.0.1",
-    "eslint-import-resolver-typescript": "^3.7.0",
+    "eslint-import-resolver-typescript": "^3.8.2",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-jest": "^28.11.0",
     "eslint-plugin-prettier": "^5.2.3",
     "eslint-plugin-react": "^7.37.4",
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-unused-imports": "^4.1.4",
-    "prettier": "^3.4.2",
-    "typescript-eslint": "^8.23.0"
+    "prettier": "^3.5.1",
+    "typescript-eslint": "^8.24.1"
   },
   "devDependencies": {
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^12.1.2",
     "@types/eslint__js": "^8.42.3",
     "jiti": "^2.4.2",
-    "rollup": "^4.34.2",
+    "rollup": "^4.34.8",
     "rollup-plugin-dts": "^6.1.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "typescript": "^5.7.3"

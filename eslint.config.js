@@ -9,12 +9,9 @@ const eslintConfig = config(
   imports.flatConfigs.recommended,
   imports.flatConfigs.typescript,
   ...configs.recommended,
-  ...configs.recommendedTypeChecked,
-  prettierRecommended,
   {
-    ignores: ['**/.vscode/', '**/node_modules/', '**/lib/'],
-  },
-  {
+    files: ['**/*.{ts}'],
+    extends: [...configs.recommendedTypeChecked],
     languageOptions: {
       parserOptions: {
         ecmaVersion: 'latest',
@@ -23,6 +20,17 @@ const eslintConfig = config(
         tsconfigRootDir: './',
       },
     },
+    rules: {
+      '@typescript-eslint/explicit-module-boundary-types': 'error',
+      '@typescript-eslint/no-explicit-any': 'error',
+      '@typescript-eslint/no-unused-vars': 'off',
+    },
+  },
+  prettierRecommended,
+  {
+    ignores: ['**/.vscode/', '**/node_modules/', '**/lib/'],
+  },
+  {
     plugins: {
       'unused-imports': unusedImport,
     },
@@ -43,9 +51,6 @@ const eslintConfig = config(
           },
         },
       ],
-      '@typescript-eslint/explicit-module-boundary-types': 'error',
-      '@typescript-eslint/no-explicit-any': 'error',
-      '@typescript-eslint/no-unused-vars': 'off',
       'unused-imports/no-unused-imports': 'error',
       'unused-imports/no-unused-vars': [
         'error',

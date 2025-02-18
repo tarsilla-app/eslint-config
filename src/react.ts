@@ -3,7 +3,6 @@ import type { TSESLint } from '@typescript-eslint/utils';
 import imports from 'eslint-plugin-import';
 import jest from 'eslint-plugin-jest';
 import prettierRecommended from 'eslint-plugin-prettier/recommended';
-//import reactRecommended from 'eslint-plugin-react/configs/recommended.js';
 import reactPlugin from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import unusedImports from 'eslint-plugin-unused-imports';
@@ -20,7 +19,23 @@ function react({ ignores }: Config): TSESLint.FlatConfig.ConfigArray {
     imports.flatConfigs.recommended,
     imports.flatConfigs.typescript,
     ...configs.recommended,
-    ...configs.recommendedTypeChecked,
+    {
+      files: ['**/*.{ts,tsx}'],
+      extends: [...configs.recommendedTypeChecked],
+      languageOptions: {
+        parserOptions: {
+          ecmaVersion: 'latest',
+          sourceType: 'module',
+          project: true,
+          tsconfigRootDir: './',
+        },
+      },
+      rules: {
+        '@typescript-eslint/explicit-module-boundary-types': 'error',
+        '@typescript-eslint/no-explicit-any': 'error',
+        '@typescript-eslint/no-unused-vars': 'off',
+      },
+    },
     {
       files: ['**/*.{jsx,tsx}'],
       ...reactPlugin.configs.flat.recommended,
@@ -59,14 +74,6 @@ function react({ ignores }: Config): TSESLint.FlatConfig.ConfigArray {
       ignores,
     },
     {
-      languageOptions: {
-        parserOptions: {
-          ecmaVersion: 'latest',
-          sourceType: 'module',
-          project: true,
-          tsconfigRootDir: './',
-        },
-      },
       plugins: {
         'unused-imports': unusedImports,
       },
@@ -88,10 +95,7 @@ function react({ ignores }: Config): TSESLint.FlatConfig.ConfigArray {
             },
           },
         ],
-        '@typescript-eslint/explicit-module-boundary-types': 'error',
-        '@typescript-eslint/no-explicit-any': 'error',
         'no-unused-vars': 'off',
-        '@typescript-eslint/no-unused-vars': 'off',
         'unused-imports/no-unused-imports': 'error',
         'unused-imports/no-unused-vars': [
           'error',
