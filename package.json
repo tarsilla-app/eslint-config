@@ -1,6 +1,6 @@
 {
   "name": "@tarsilla/eslint-config",
-  "version": "0.0.39",
+  "version": "0.0.40",
   "engines": {
     "node": ">=22"
   },
@@ -44,12 +44,11 @@
     "pub": "npm publish --access public"
   },
   "peerDependencies": {
-    "eslint": ">=9"
+    "eslint": "^9"
   },
   "dependencies": {
     "@eslint/js": "^9.20.0",
     "@types/node": "^22.13.4",
-    "eslint": ">=9",
     "eslint-config-prettier": "^10.0.1",
     "eslint-import-resolver-typescript": "^3.8.2",
     "eslint-plugin-import": "^2.31.0",
