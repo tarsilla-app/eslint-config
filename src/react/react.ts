@@ -9,7 +9,7 @@ import unusedImports from 'eslint-plugin-unused-imports';
 import globalsImp from 'globals';
 import { config, configs } from 'typescript-eslint';
 
-import { Config } from './Config';
+import { Config } from '../types/index.js';
 
 const globals = globalsImp as Record<string, Record<string, boolean>>;
 

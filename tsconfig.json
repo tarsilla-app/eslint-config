@@ -1,15 +1,16 @@
 {
   "compilerOptions": {
-    "module": "ESNext",
+    "module": "NodeNext",
     "target": "ESNext",
-    "moduleResolution": "Node",
-    "skipLibCheck": true,
-    "strict": true,
-    "noEmit": true,
+    "moduleResolution": "NodeNext",
     "esModuleInterop": true,
-    "baseUrl": ".",
-    "allowJs": true
+    "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "."
   },
-  "include": ["**/*"],
   "exclude": ["lib"]
 }

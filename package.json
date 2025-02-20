@@ -1,6 +1,6 @@
 {
   "name": "@tarsilla/eslint-config",
-  "version": "0.0.37",
+  "version": "0.0.39",
   "engines": {
     "node": ">=22"
   },
@@ -10,6 +10,18 @@
       "types": "./lib/index.d.ts",
       "require": "./lib/index.cjs",
       "default": "./lib/index.mjs"
+    },
+    "./library": {
+      "types": "./lib/library/index.d.ts",
+      "require": "./lib/library/index.cjs",
+      "import": "./lib/library/index.mjs",
+      "default": "./lib/library/index.mjs"
+    },
+    "./react": {
+      "types": "./lib/react/index.d.ts",
+      "require": "./lib/react/index.cjs",
+      "import": "./lib/react/index.mjs",
+      "default": "./lib/react/index.mjs"
     },
     "./package.json": "./package.json"
   },
@@ -25,8 +37,9 @@
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
+    "tsc": "tsc --noEmit",
     "clean": "rm -rf ./lib",
-    "build": "npm run clean && rollup -c --bundleConfigAsCjs",
+    "build": "npm run clean && npm run lint && npm run tsc && rollup -c",
     "prepub": "npm run build",
     "pub": "npm publish --access public"
   },
@@ -36,7 +49,7 @@
   "dependencies": {
     "@eslint/js": "^9.20.0",
     "@types/node": "^22.13.4",
-    "eslint": "^9.20.1",
+    "eslint": ">=9",
     "eslint-config-prettier": "^10.0.1",
     "eslint-import-resolver-typescript": "^3.8.2",
     "eslint-plugin-import": "^2.31.0",
@@ -49,6 +62,9 @@
     "typescript-eslint": "^8.24.1"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^28.0.2",
+    "@rollup/plugin-node-resolve": "^16.0.0",
+    "@rollup/plugin-swc": "^0.4.0",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^12.1.2",
     "@types/eslint__js": "^8.42.3",
