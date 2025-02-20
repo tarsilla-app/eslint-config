@@ -1,1 +1,1 @@
-export * from './Config.js';
+export * from './EslintOptions.js';

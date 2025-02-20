@@ -7,11 +7,11 @@ import unusedImports from 'eslint-plugin-unused-imports';
 import globalsImp from 'globals';
 import { config, configs } from 'typescript-eslint';
 
-import { Config } from '../types/index.js';
+import { EslintOptions } from '../types/index.js';
 
 const globals = globalsImp as Record<string, Record<string, boolean>>;
 
-function library({ ignores }: Config): TSESLint.FlatConfig.ConfigArray {
+function eslintLibraryConfig({ ignores }: EslintOptions): TSESLint.FlatConfig.ConfigArray {
   return config(
     js.configs.recommended,
     imports.flatConfigs.recommended,
@@ -110,4 +110,4 @@ function library({ ignores }: Config): TSESLint.FlatConfig.ConfigArray {
   );
 }
 
-export { library };
+export { eslintLibraryConfig };

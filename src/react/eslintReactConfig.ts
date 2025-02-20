@@ -9,11 +9,11 @@ import unusedImports from 'eslint-plugin-unused-imports';
 import globalsImp from 'globals';
 import { config, configs } from 'typescript-eslint';
 
-import { Config } from '../types/index.js';
+import { EslintOptions } from '../types/index.js';
 
 const globals = globalsImp as Record<string, Record<string, boolean>>;
 
-function react({ ignores }: Config): TSESLint.FlatConfig.ConfigArray {
+function eslintReactConfig({ ignores }: EslintOptions): TSESLint.FlatConfig.ConfigArray {
   return config(
     js.configs.recommended,
     imports.flatConfigs.recommended,
@@ -147,4 +147,4 @@ function react({ ignores }: Config): TSESLint.FlatConfig.ConfigArray {
   );
 }
 
-export { react };
+export { eslintReactConfig };

@@ -1,1 +1,1 @@
-export * from './react.js';
+export * from './eslintReactConfig.js';
