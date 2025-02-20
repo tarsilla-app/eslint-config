@@ -1,6 +1,6 @@
 {
   "name": "@tarsilla/eslint-config",
-  "version": "0.0.40",
+  "version": "0.0.41",
   "engines": {
     "node": ">=22"
   },
@@ -50,7 +50,7 @@
     "@eslint/js": "^9.20.0",
     "@types/node": "^22.13.4",
     "eslint-config-prettier": "^10.0.1",
-    "eslint-import-resolver-typescript": "^3.8.2",
+    "eslint-import-resolver-typescript": "^3.8.3",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-jest": "^28.11.0",
     "eslint-plugin-prettier": "^5.2.3",
