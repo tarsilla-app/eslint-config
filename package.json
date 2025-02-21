@@ -84,5 +84,9 @@
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "semantic-release": "^24.2.3",
     "typescript": "^5.7.3"
+  },
+  "overrides": {
+    "debug": "4.3.4",
+    "lodash": "4.17.21"
   }
 }
