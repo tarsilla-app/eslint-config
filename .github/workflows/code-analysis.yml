@@ -131,23 +131,4 @@ jobs:
         uses: github/codeql-action/analyze@v3
         with:
           category: "/language:${{matrix.language}}"
-          output: codeql-results.sarif 
-
-      - name: Setup .NET Core 3.1 Runtime
-        uses: actions/setup-dotnet@v2
-        with:
-          dotnet-version: '3.1.x'
-
-      - name: Install SARIF Multitool
-        run: dotnet tool install --global Sarif.Multitool
-
-      - name: Convert SARIF to HTML
-        run: |
-          export PATH="$PATH:/home/runner/.dotnet/tools"
-          sarif html codeql-results.sarif -o codeql-results.html
-  
-      - name: Upload CodeQL report
-        uses: actions/upload-artifact@master
-        with:
-            name: codeql report
-            path: codeql-results.html
+          output: codeql-results.sarif
