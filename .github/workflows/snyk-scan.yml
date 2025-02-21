@@ -26,7 +26,8 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          args: test --debug
+          command: test
+          arg: --debug
 
       - name: Debug - Confirm Snyk Code Analysis Completed
         run: echo "Snyk code analysis completed successfully."
