@@ -64,7 +64,7 @@ jobs:
             --enableRetired
             --suppression suppression.xml
 
-      - name: Upload Test results
+      - name: Upload OWASP report
         uses: actions/upload-artifact@master
         with:
             name: OWASP report
@@ -131,3 +131,10 @@ jobs:
         uses: github/codeql-action/analyze@v3
         with:
           category: "/language:${{matrix.language}}"
+          output: codeql-results.sarif 
+
+      - name: Upload codeql report
+        uses: actions/upload-artifact@master
+        with:
+            name: codeql report
+            path: codeql-results.sarif
