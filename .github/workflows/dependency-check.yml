@@ -31,7 +31,7 @@ jobs:
           args: >
             --failOnCVSS 7
             --enableRetired
-            --suppression 'suppression.xml'
+            --suppression suppression.xml
 
       - name: Upload Test results
         uses: actions/upload-artifact@master
