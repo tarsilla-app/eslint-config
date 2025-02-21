@@ -1,0 +1,8 @@
+<suppressions>
+    <suppress>
+        <cve>CVE-2021-23397</cve>
+    </suppress>
+    <suppress>
+        <cve>CVE-2017-16115</cve>
+    </suppress>
+</suppressions>
