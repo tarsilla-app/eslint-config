@@ -1,9 +1,10 @@
 name: Publish to npm
 
 on:
-  push:
-    branches:
-      - "main"
+  workflow_run:
+    workflows: ["Snyk Scan"]
+    types:
+      - completed
 
 permissions:
   contents: read # for checkout
@@ -11,6 +12,7 @@ permissions:
 jobs:
   publish:
     name: Publish
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     permissions:
       contents: write # to be able to publish a GitHub release
