@@ -1,4 +1,4 @@
-name: Dependency Check
+name: Code Analysis
 
 on:
   push:
