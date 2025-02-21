@@ -133,8 +133,13 @@ jobs:
           category: "/language:${{matrix.language}}"
           output: codeql-results.sarif 
 
+      - name: Convert sarif to html
+        run: |
+          npm install -g @microsoft/sarif-cli
+          sarif html codeql-results.sarif -o codeql-results.html
+  
       - name: Upload codeql report
         uses: actions/upload-artifact@master
         with:
             name: codeql report
-            path: codeql-results.sarif
+            path: codeql-results.html
