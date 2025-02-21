@@ -6,18 +6,19 @@ import { dts } from 'rollup-plugin-dts';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 
 function build({ folder = '' } = {}) {
+  const _folder = folder.trim().length > 0 ? `${folder}/` : folder;
   return [
     {
-      input: `src/${folder}index.ts`,
+      input: `src/${_folder}index.ts`,
       output: [
         {
-          file: `lib/${folder}index.cjs`,
+          file: `lib/${_folder}index.cjs`,
           format: 'cjs',
           sourcemap: true,
           exports: 'auto',
         },
         {
-          file: `lib/${folder}index.mjs`,
+          file: `lib/${_folder}index.mjs`,
           format: 'esm',
           sourcemap: true,
           exports: 'auto',
@@ -28,17 +29,23 @@ function build({ folder = '' } = {}) {
         peerDepsExternal({ includeDependencies: true }),
         nodeResolve({ extensions: ['.ts'] }),
         commonjs(),
-        typescript(),
+        typescript({
+          jsc: {
+            parser: {
+              syntax: 'typescript',
+            },
+          },
+        }),
         terser(),
       ],
     },
     {
-      input: `./src/${folder}index.ts`,
-      output: [{ file: `./lib/${folder}index.d.ts`, format: 'esm' }],
+      input: `./src/${_folder}index.ts`,
+      output: [{ file: `./lib/${_folder}index.d.ts`, format: 'esm' }],
       external: ['globals'],
       plugins: [dts()],
     },
   ];
 }
 
-export default [...build(), ...build({ folder: 'library/' }), ...build({ folder: 'react/' })];
+export default [...build(), ...build({ folder: 'library' }), ...build({ folder: 'react' })];
