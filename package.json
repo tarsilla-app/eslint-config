@@ -86,7 +86,11 @@
     "typescript": "^5.7.3"
   },
   "overrides": {
-    "debug": "4.3.4",
-    "lodash": "4.17.21"
+    "time-span": {
+      "debug": "4.3.4"
+    },
+    "merge": {
+      "lodash": "4.17.21"
+    }
   }
 }
