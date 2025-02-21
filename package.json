@@ -79,11 +79,18 @@
     "cz-conventional-changelog": "^3.3.0",
     "husky": "^9.1.7",
     "jiti": "^2.4.2",
-    "npm-force-resolutions": "^0.0.10",
     "rollup": "^4.34.8",
     "rollup-plugin-dts": "^6.1.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "semantic-release": "^24.2.3",
     "typescript": "^5.7.3"
+  },
+  "overrides": {
+    "time-span": {
+      "debug": "4.3.4"
+    },
+    "merge": {
+      "lodash": "4.17.21"
+    }
   }
 }
