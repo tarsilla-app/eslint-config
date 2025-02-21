@@ -132,11 +132,11 @@ jobs:
         with:
           category: "/language:${{matrix.language}}"
           output: codeql-results.sarif 
-      
-      - name: Setup .NET SDK
+
+      - name: Setup .NET Core 3.1 Runtime
         uses: actions/setup-dotnet@v2
         with:
-          dotnet-version: '6.0.x'
+          dotnet-version: '3.1.x'
 
       - name: Install SARIF Multitool
         run: dotnet tool install --global Sarif.Multitool
