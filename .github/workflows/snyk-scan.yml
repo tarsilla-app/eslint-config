@@ -33,7 +33,7 @@ jobs:
         uses: snyk/actions/node@master
         with:
           command: code test
-          args: --severity-threshold=high --report
+          args: --severity-threshold=high --project-name=tarsilla-app/eslint-config --report
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
