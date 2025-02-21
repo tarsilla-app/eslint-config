@@ -44,3 +44,19 @@ jobs:
           args: --project-name="tarsilla-app/eslint-config"
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+      - name: Run OWASP Dependency-Check
+        uses: dependency-check/Dependency-Check_Action@main
+        with:
+          project: 'Tarsilla - Eslint Config'
+          path: '.'
+          format: 'HTML'
+          out: 'reports'
+          args: >
+            --failOnCVSS 7
+
+      - name: Upload Test results
+        uses: actions/upload-artifact@master
+        with:
+            name: OWASP report
+            path: ${{github.workspace}}/reports
