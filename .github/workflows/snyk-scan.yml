@@ -21,13 +21,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run Snyk to check for vulnerabilities
+      - name: Run Snyk Code Test
         uses: snyk/actions/node@master
+        with:
+          command: code test
+          args: --debug
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          command: test
-          arg: --debug
-
-      - name: Debug - Confirm Snyk Code Analysis Completed
-        run: echo "Snyk code analysis completed successfully."
