@@ -27,13 +27,13 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           command: test
-          args: --project-name=tarsilla-app/eslint-config --severity-threshold=high
+          args: --severity-threshold=high
 
       - name: Run Snyk Code Test
         uses: snyk/actions/node@master
         with:
           command: code test
-          args: --project-name=tarsilla-app/eslint-config --severity-threshold=high
+          args: --severity-threshold=high
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
@@ -41,6 +41,6 @@ jobs:
         uses: snyk/actions/node@master
         with:
           command: monitor
-          args: --project-name=tarsilla-app/eslint-config
+          args: --project-name="tarsilla-app/eslint-config"
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
