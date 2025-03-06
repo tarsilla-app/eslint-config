@@ -1,6 +1,6 @@
 {
   "name": "@tarsilla/eslint-config",
-  "version": "0.0.60",
+  "version": "0.1.0",
   "publishConfig": {
     "access": "public"
   },
