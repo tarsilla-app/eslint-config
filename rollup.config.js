@@ -1,6 +1,6 @@
 import commonjs from '@rollup/plugin-commonjs';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
-import typescript from '@rollup/plugin-swc';
+import swc from '@rollup/plugin-swc';
 import terser from '@rollup/plugin-terser';
 import { dts } from 'rollup-plugin-dts';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
@@ -28,8 +28,8 @@ function build({ folder = '' } = {}) {
       plugins: [
         peerDepsExternal({ includeDependencies: true }),
         nodeResolve({ extensions: ['.ts'] }),
-        commonjs(),
-        typescript({
+        commonjs({ exclude: 'node_modules/**' }),
+        swc({
           jsc: {
             parser: {
               syntax: 'typescript',
@@ -48,4 +48,9 @@ function build({ folder = '' } = {}) {
   ];
 }
 
-export default [...build(), ...build({ folder: 'library' }), ...build({ folder: 'react' })];
+export default [
+  ...build(),
+  ...build({ folder: 'library' }),
+  ...build({ folder: 'next' }),
+  ...build({ folder: 'react' }),
+];

@@ -7,11 +7,18 @@ import { config, configs } from 'typescript-eslint';
 const eslintConfig = config(
   js.configs.recommended,
   imports.flatConfigs.recommended,
-  imports.flatConfigs.typescript,
-  ...configs.recommended,
   {
-    files: ['**/*.{ts}'],
-    extends: [...configs.recommendedTypeChecked],
+    files: ['**/*.{js,mjs}'],
+    rules: {
+      'import/namespace': 'off',
+      'import/default': 'off',
+      'import/no-named-as-default': 'off',
+      'import/no-named-as-default-member': 'off',
+    },
+  },
+  {
+    files: ['**/*.ts'],
+    extends: [imports.flatConfigs.typescript, ...configs.recommended, ...configs.recommendedTypeChecked],
     languageOptions: {
       parserOptions: {
         ecmaVersion: 'latest',

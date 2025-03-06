@@ -17,11 +17,18 @@ function eslintReactConfig({ ignores }: EslintOptions): TSESLint.FlatConfig.Conf
   return config(
     js.configs.recommended,
     imports.flatConfigs.recommended,
-    imports.flatConfigs.typescript,
-    ...configs.recommended,
+    {
+      files: ['**/*.{js,jsx,mjs}'],
+      rules: {
+        'import/namespace': 'off',
+        'import/default': 'off',
+        'import/no-named-as-default': 'off',
+        'import/no-named-as-default-member': 'off',
+      },
+    },
     {
       files: ['**/*.{ts,tsx}'],
-      extends: [...configs.recommendedTypeChecked],
+      extends: [imports.flatConfigs.typescript, ...configs.recommended, ...configs.recommendedTypeChecked],
       languageOptions: {
         parserOptions: {
           ecmaVersion: 'latest',
@@ -124,8 +131,13 @@ function eslintReactConfig({ ignores }: EslintOptions): TSESLint.FlatConfig.Conf
                 group: 'external',
                 position: 'before',
               },
+              {
+                pattern: '@tarsilla/**',
+                group: 'internal',
+                position: 'before',
+              },
             ],
-            pathGroupsExcludedImportTypes: ['react'],
+            pathGroupsExcludedImportTypes: ['react', '@tarsilla'],
             'newlines-between': 'always',
             alphabetize: {
               order: 'asc',

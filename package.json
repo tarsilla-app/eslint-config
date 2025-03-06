@@ -1,6 +1,9 @@
 {
   "name": "@tarsilla/eslint-config",
   "version": "0.0.60",
+  "publishConfig": {
+    "access": "public"
+  },
   "engines": {
     "node": ">=22"
   },
@@ -16,6 +19,12 @@
       "require": "./lib/library/index.cjs",
       "import": "./lib/library/index.mjs",
       "default": "./lib/library/index.mjs"
+    },
+    "./next": {
+      "types": "./lib/next/index.d.ts",
+      "require": "./lib/next/index.cjs",
+      "import": "./lib/next/index.mjs",
+      "default": "./lib/next/index.mjs"
     },
     "./react": {
       "types": "./lib/react/index.d.ts",
@@ -48,23 +57,25 @@
     "eslint": "^9"
   },
   "dependencies": {
+    "@eslint/eslintrc": "^3.3.0",
     "@eslint/js": "^9.21.0",
-    "@types/node": "^22.13.5",
-    "eslint-config-prettier": "^10.0.1",
+    "@types/node": "^22.13.9",
+    "eslint-config-next": "^15.2.1",
+    "eslint-config-prettier": "^10.0.2",
     "eslint-import-resolver-typescript": "^3.8.3",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-jest": "^28.11.0",
     "eslint-plugin-prettier": "^5.2.3",
     "eslint-plugin-react": "^7.37.4",
-    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-unused-imports": "^4.1.4",
-    "prettier": "^3.5.2",
-    "typescript-eslint": "^8.25.0"
+    "prettier": "^3.5.3",
+    "typescript-eslint": "^8.26.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.7.1",
     "@commitlint/config-conventional": "^19.7.1",
-    "@rollup/plugin-commonjs": "^28.0.2",
+    "@rollup/plugin-commonjs": "^28.0.3",
     "@rollup/plugin-node-resolve": "^16.0.0",
     "@rollup/plugin-swc": "^0.4.0",
     "@rollup/plugin-terser": "^0.4.4",
@@ -75,11 +86,11 @@
     "@semantic-release/release-notes-generator": "^14.0.3",
     "cz-conventional-changelog": "^3.3.0",
     "husky": "^9.1.7",
-    "rollup": "^4.34.8",
+    "rollup": "^4.34.9",
     "rollup-plugin-dts": "^6.1.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "semantic-release": "^24.2.3",
-    "typescript": "^5.7.3"
+    "typescript": "^5.8.2"
   },
   "overrides": {
     "@swc/core": {
