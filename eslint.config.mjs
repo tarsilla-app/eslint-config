@@ -9,12 +9,7 @@ const eslintConfig = config(
   imports.flatConfigs.recommended,
   {
     files: ['**/*.{js,mjs}'],
-    rules: {
-      'import/namespace': 'off',
-      'import/default': 'off',
-      'import/no-named-as-default': 'off',
-      'import/no-named-as-default-member': 'off',
-    },
+    extends: [configs.base],
   },
   {
     files: ['**/*.ts'],

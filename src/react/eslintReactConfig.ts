@@ -19,12 +19,7 @@ function eslintReactConfig({ ignores }: EslintOptions): TSESLint.FlatConfig.Conf
     imports.flatConfigs.recommended,
     {
       files: ['**/*.{js,jsx,mjs}'],
-      rules: {
-        'import/namespace': 'off',
-        'import/default': 'off',
-        'import/no-named-as-default': 'off',
-        'import/no-named-as-default-member': 'off',
-      },
+      extends: [configs.base],
     },
     {
       files: ['**/*.{ts,tsx}'],
