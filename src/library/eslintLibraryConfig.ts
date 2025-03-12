@@ -15,13 +15,11 @@ function eslintLibraryConfig({ ignores }: EslintOptions): TSESLint.FlatConfig.Co
   return config(
     js.configs.recommended,
     imports.flatConfigs.recommended,
-    {
-      files: ['**/*.{js,mjs}'],
-      extends: [configs.base],
-    },
+    imports.flatConfigs.typescript,
+    ...configs.stylistic,
+    ...configs.stylisticTypeChecked,
     {
       files: ['**/*.ts'],
-      extends: [imports.flatConfigs.typescript, ...configs.recommended, ...configs.recommendedTypeChecked],
       languageOptions: {
         parserOptions: {
           ecmaVersion: 'latest',
@@ -31,10 +29,15 @@ function eslintLibraryConfig({ ignores }: EslintOptions): TSESLint.FlatConfig.Co
         },
       },
       rules: {
+        '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
         '@typescript-eslint/explicit-module-boundary-types': 'error',
         '@typescript-eslint/no-explicit-any': 'error',
         '@typescript-eslint/no-unused-vars': 'off',
       },
+    },
+    {
+      files: ['**/*.{js,mjs}'],
+      extends: [configs.disableTypeChecked],
     },
     {
       files: ['**/*.test.{js,ts}'],

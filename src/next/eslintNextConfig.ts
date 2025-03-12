@@ -55,13 +55,10 @@ function eslintNextConfig({ ignores }: EslintOptions): TSESLint.FlatConfig.Confi
         ],
       },
     }),
-    {
-      files: ['**/*.{js,jsx,mjs}'],
-      extends: [configs.base],
-    },
+    ...configs.stylistic,
+    ...configs.stylisticTypeChecked,
     {
       files: ['**/*.{ts,tsx}'],
-      extends: [...configs.recommended, ...configs.recommendedTypeChecked],
       languageOptions: {
         parserOptions: {
           ecmaVersion: 'latest',
@@ -71,10 +68,15 @@ function eslintNextConfig({ ignores }: EslintOptions): TSESLint.FlatConfig.Confi
         },
       },
       rules: {
+        '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
         '@typescript-eslint/explicit-module-boundary-types': 'error',
         '@typescript-eslint/no-explicit-any': 'error',
         '@typescript-eslint/no-unused-vars': 'off',
       },
+    },
+    {
+      files: ['**/*.{js,jsx,mjs}'],
+      extends: [configs.disableTypeChecked],
     },
     {
       files: ['**/*.{jsx,tsx}'],

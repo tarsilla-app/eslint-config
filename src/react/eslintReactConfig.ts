@@ -17,10 +17,9 @@ function eslintReactConfig({ ignores }: EslintOptions): TSESLint.FlatConfig.Conf
   return config(
     js.configs.recommended,
     imports.flatConfigs.recommended,
-    {
-      files: ['**/*.{js,jsx,mjs}'],
-      extends: [configs.base],
-    },
+    imports.flatConfigs.typescript,
+    ...configs.stylistic,
+    ...configs.stylisticTypeChecked,
     {
       files: ['**/*.{ts,tsx}'],
       extends: [imports.flatConfigs.typescript, ...configs.recommended, ...configs.recommendedTypeChecked],
@@ -33,10 +32,15 @@ function eslintReactConfig({ ignores }: EslintOptions): TSESLint.FlatConfig.Conf
         },
       },
       rules: {
+        '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
         '@typescript-eslint/explicit-module-boundary-types': 'error',
         '@typescript-eslint/no-explicit-any': 'error',
         '@typescript-eslint/no-unused-vars': 'off',
       },
+    },
+    {
+      files: ['**/*.{js,jsx,mjs}'],
+      extends: [configs.disableTypeChecked],
     },
     {
       files: ['**/*.{jsx,tsx}'],
@@ -67,7 +71,6 @@ function eslintReactConfig({ ignores }: EslintOptions): TSESLint.FlatConfig.Conf
       languageOptions: {
         globals: {
           ...globals.jest,
-          //...globals.vitest,
         },
       },
     },
