@@ -3,6 +3,7 @@ import { fileURLToPath } from 'url';
 
 import { FlatCompat } from '@eslint/eslintrc';
 import type { TSESLint } from '@typescript-eslint/utils';
+import globals from 'globals';
 import { config } from 'typescript-eslint';
 
 import {
@@ -12,7 +13,6 @@ import {
   prettierConfig,
   reactHooksConfig,
   sortImportsConfig,
-  typescriptConfig,
   unusedImportsConfig,
 } from '../commons/index.js';
 import { EslintOptions } from '../types/index.js';
@@ -26,9 +26,16 @@ const compat = new FlatCompat({
 
 function eslintNextConfig({ ignores }: EslintOptions): TSESLint.FlatConfig.ConfigArray {
   return config(
-    {
+    ...config({
       ignores,
-    },
+      languageOptions: {
+        globals: {
+          ...globals.node,
+          ...globals.browser,
+        },
+      },
+    }),
+    ...allConfig,
     ...compat.config({
       extends: ['next/core-web-vitals', 'next/typescript'],
       rules: {
@@ -59,10 +66,8 @@ function eslintNextConfig({ ignores }: EslintOptions): TSESLint.FlatConfig.Confi
       },
     }),
     ...reactHooksConfig,
-    ...allConfig,
     ...unusedImportsConfig,
     ...sortImportsConfig,
-    ...typescriptConfig,
     ...javascriptConfig,
     ...jestConfig,
     ...prettierConfig,

@@ -1,5 +1,6 @@
 import type { TSESLint } from '@typescript-eslint/utils';
 import reactPlugin from 'eslint-plugin-react';
+import globals from 'globals';
 import { config } from 'typescript-eslint';
 
 import {
@@ -10,16 +11,20 @@ import {
   prettierConfig,
   reactHooksConfig,
   sortImportsConfig,
-  typescriptConfig,
   unusedImportsConfig,
 } from '../commons/index.js';
 import { EslintOptions } from '../types/index.js';
 
 function eslintReactConfig({ ignores }: EslintOptions): TSESLint.FlatConfig.ConfigArray {
   return config(
-    {
+    ...config({
       ignores,
-    },
+      languageOptions: {
+        globals: {
+          ...globals.browser,
+        },
+      },
+    }),
     ...allConfig,
     ...config({
       files: ['**/*.{jsx,tsx}'],
@@ -35,7 +40,6 @@ function eslintReactConfig({ ignores }: EslintOptions): TSESLint.FlatConfig.Conf
     ...unusedImportsConfig,
     ...sortImportsConfig,
     ...importsConfig,
-    ...typescriptConfig,
     ...javascriptConfig,
     ...jestConfig,
     ...prettierConfig,

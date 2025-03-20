@@ -5,5 +5,4 @@ export * from './jest.js';
 export * from './prettier.js';
 export * from './react-hooks.js';
 export * from './sortImports.js';
-export * from './typescript.js';
 export * from './unusedImports.js';
