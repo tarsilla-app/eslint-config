@@ -19,6 +19,8 @@ function eslintReactConfig({ ignores }: EslintOptions): TSESLint.FlatConfig.Conf
   return config(
     ...config({
       ignores,
+    }),
+    ...config({
       languageOptions: {
         globals: {
           ...globals.browser,

@@ -28,6 +28,8 @@ function eslintNextConfig({ ignores }: EslintOptions): TSESLint.FlatConfig.Confi
   return config(
     ...config({
       ignores,
+    }),
+    ...config({
       languageOptions: {
         globals: {
           ...globals.node,

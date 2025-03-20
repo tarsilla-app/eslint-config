@@ -17,6 +17,8 @@ function eslintLibraryConfig({ ignores }: EslintOptions): TSESLint.FlatConfig.Co
   return config(
     ...config({
       ignores,
+    }),
+    ...config({
       languageOptions: {
         globals: {
           ...globals.node,
