@@ -30,6 +30,7 @@ yarn add --dev @tarsilla/eslint-config
 In your ESLint configuration (see .eslintrc.mjs), add the plugin to your plugins array:
 
 **Next.js Projects**  
+
 ```js
 import { eslintNextConfig } from '@tarsilla/eslint-config/next';
 
@@ -39,6 +40,7 @@ export default [
 ];
 ```
 **React Projects**  
+
 ```js
 import { eslintReactConfig } from '@tarsilla/eslint-config/react';
 
@@ -48,6 +50,7 @@ export default [
 ];
 ```
 **Typescript Library Projects**  
+
 ```js
 import { eslintLibraryConfig } from '@tarsilla/eslint-config/library';
 
@@ -59,7 +62,15 @@ export default [
 
 ## Configuration Options
 
-You can pass options to adjust the behavior of the config. For example, in the Next.js configuration:
+You can override default settings by creating passing options to the plugin.
+The plugin accepts an object of type `EslintOptions`:
+
+| Option   | Type   | Description                                                  | Default     |
+|----------|--------|--------------------------------------------------------------|-------------|
+| ignores | string array |  Array of paths to ignore during lint check. If not provided, the plugin will run in all files. | `undefined` |
+
+Example `Next.js`:
+
 ```js
 import { eslintNextConfig } from '@tarsilla/eslint-config/next';
 
@@ -70,15 +81,6 @@ export default [
   }),
 ];
 ```
-
-## Options
-
-The plugin accepts an options object of type `EslintOptions`:
-
-| Option   | Type   | Description                                                  | Default     |
-|----------|--------|--------------------------------------------------------------|-------------|
-| ignores | string array |  Array of paths to ignore during lint check. If not provided, the plugin will run in all files. | `undefined` |
-
 
 ## Contributing
 
