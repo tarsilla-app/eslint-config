@@ -32,7 +32,6 @@ function eslintNextConfig({ ignores }: EslintOptions): TSESLint.FlatConfig.Confi
     ...config({
       languageOptions: {
         globals: {
-          ...globals.node,
           ...globals.browser,
         },
       },

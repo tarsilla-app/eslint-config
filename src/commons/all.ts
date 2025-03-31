@@ -18,6 +18,7 @@ const allConfig: TSESLint.FlatConfig.ConfigArray = config([
       globals: {
         ...globals.builtin,
         ...globals.es2021,
+        ...globals.node,
       },
     },
     rules: {

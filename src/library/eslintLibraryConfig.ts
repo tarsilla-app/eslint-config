@@ -1,5 +1,4 @@
 import type { TSESLint } from '@typescript-eslint/utils';
-import globals from 'globals';
 import { config } from 'typescript-eslint';
 
 import {
@@ -17,13 +16,6 @@ function eslintLibraryConfig({ ignores }: EslintOptions): TSESLint.FlatConfig.Co
   return config(
     ...config({
       ignores,
-    }),
-    ...config({
-      languageOptions: {
-        globals: {
-          ...globals.node,
-        },
-      },
     }),
     ...allConfig,
     ...unusedImportsConfig,
