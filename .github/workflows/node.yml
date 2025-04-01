@@ -1,9 +1,9 @@
-name: ci
+name: CI/CD
 on:
   push:
     branches: [main]
 jobs:
-  ci:
+  ci-cd:
     permissions:
       security-events: write
       contents: write

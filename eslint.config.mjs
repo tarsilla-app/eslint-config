@@ -10,13 +10,6 @@ const eslintConfig = config(
   ...config({
     ignores: ['**/.vscode/', '**/node_modules/', '**/lib/'],
   }),
-  ...config({
-    languageOptions: {
-      globals: {
-        ...globals.node,
-      },
-    },
-  }),
   //all
   ...config([
     js.configs.recommended,
@@ -33,6 +26,7 @@ const eslintConfig = config(
         globals: {
           ...globals.builtin,
           ...globals.es2021,
+          ...globals.node,
         },
       },
       rules: {
